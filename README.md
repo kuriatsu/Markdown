@@ -44,7 +44,7 @@ $ ./run
 ## 5. Setup Autoware
 ### Setup
 
-![image](picture/setup.png)  
+<image src="picture/setup.png" width=50%>  
 
 1. **Localizer**  
     Select localization sensor
@@ -57,7 +57,7 @@ $ ./run
 
 ### Map
 
-![image](picture/map.png)
+<image src="picture/map.png" width=50%>  
 
 1. **Point Cloud**  
     Input path to point_cloud
@@ -70,20 +70,20 @@ $ ./run
 
 ### Sensing
 
-![image](picture/sensing.png)
-
+<image src="picture/sensing.png" width=50%>  
 1. **Velodyne VLP-16**  
 
     Input calibration setting file like   
     `/path/to/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud/params/VLP16db.yaml`
      If you use oster, see [here]().
 
-     ![image](picture/lidar_vlp16.png)
+     <image src="picture/lidar_vlp16.png" width=50%>  
+
 
 2. **voxel grid filter**  
     Creates a 3D voxel grid (think about a voxel grid as a set of tiny 3D boxes in space) over the input point cloud data. Then, in each voxel, all the points present will be approximated (i.e., downsampled) with their centroid.  
 
-    ![image](picture/vox_grid_filter.png)
+    <image src="picture/vox_grid_filter.png" width=50%>  
 
     + **leaf size [m]**  
         Voxel’s length of each side. The bigger this value is, the faster computer is. 0.2 is best value for outside. When you use inside, 0.1 is best.
@@ -94,15 +94,14 @@ $ ./run
 3. **ring_ground_filter**  
     Remove ground points not to be detected as objects. This filter is best choice compered to other filters. Out put data is broadcast to `/points_no_ground`.
 
-    ![image](picture/ring_ground_filter.png)
+    <image src=picture/ring_ground_filter.png width=50%>  
 
 ### Computing
 
-![image](picture/computing.png)
-
+<image src="picture/computing.png" width=50%>  
 1. **ndt_matching**
 
-    ![image](picture/ndt.png)
+    <image src="picture/ndt.png" width=70%>  
     + **Error Thres**  
 
     + **Resolution**  
@@ -118,11 +117,12 @@ $ ./run
 
 2. **vel_pose_connect**  
 
-    ![image](picture/vel_pose_connect.png)
+    <image src="picture/vel_pose_connect.png" width=50%>
+
 
 3. **lidar_euclidean_cluster_detect**  
 
-    ![image](picture/lidar_euclidean_cluster.png)
+    <image src="picture/lidar_euclidean_cluster.png" width=50%>
 
     + **input_point_node**  
         If you use ground_filter, change input node from `/points_raw` to `/points_no_ground`
@@ -138,13 +138,13 @@ $ ./run
     If you use one which created in Hatem’s original map tool (which file extension is `.kml` ), check `KML` in **Map Source**.    
     If you use one which created in Autoware map tools, (which file extension is `.csv` ) ,check `Autoware` in **Map Source**.
 
-    ![image](picture/way_planner.png)
+    <image src="picture/way_planner.png" width=50%>
+
 
 5. **dp_planner**  
 
-    ![image](picture/dp_planner.png)
-
-    ![image](picture/dp_passes.png)
+    <image src="picture/dp_planner.png" width=50%>  
+    <image src="picture/dp_passes.png" width=50%>
 
     + **Follow Distance [m]**  
     The distance to obstacles in front of the robot. The Robot follow obstacles keeping this distance.
@@ -158,14 +158,13 @@ $ ./run
     + **Lateral Safety [m]**  
         Keep lateral distance from tf origin to obstacles.
 
-        ![image](picture/lateral_safezone.png)
+        <image src="picture/lateral_safezone.png" width=50%>
 
     + **Longitudinal Safety [m]**  
         Keep longitudinal distance from tf origin to obstacles.
 
 6. **pure_pursuit**
-
-    ![image](picture/pure_pursuit.png)
+    <image src="picture/pure_pursuit.png" width=50%>
 
     + **Waypoint**  
         Run according to the speed described in the Waypoint.
@@ -175,11 +174,11 @@ $ ./run
 
 7. **twist_filter**
 
-    ![image](picture/twist_filter.png)
+    <image src="picture/twist_filter.png" width=50%>
 
 ## 6. How to control Robot
 
-![image](picture/joy.png)
+<image src="picture/joy.png" width=70%>
 
 ## 7. Edit code for robot
 
