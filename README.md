@@ -27,18 +27,18 @@ Robot: NUIV, MAD_PICKLE
 
 ```bash
 #when you use yp_spur
-$ cd path/to/yp_kerberos
-$ ./kerberos.sh
+cd path/to/yp_kerberos
+./kerberos.sh
 
 #when you use sh_spur
-$ cd path/to/sh_kerberos
-$ ./kerberos.sh
+cd path/to/sh_kerberos
+./kerberos.sh
 ```
 ## 4. Run Autoware
 
 ```bash
-$ cd path/to/Autoware
-$ ./run
+cd path/to/Autoware
+./run
 ```
 
 ## 5. Setup Autoware
@@ -71,11 +71,11 @@ $ ./run
 ### Sensing
 
 <image src="picture/sensing.png" width=50%>  
-1. **Velodyne VLP-16**  
 
+1. **Velodyne VLP-16**  
     Input calibration setting file like   
     `/path/to/Autoware/ros/src/sensing/drivers/lidar/packages/velodyne/velodyne_pointcloud/params/VLP16db.yaml`
-     If you use oster, see [here]().
+    If you use oster, see [here]().
 
      <image src="picture/lidar_vlp16.png" width=50%>  
 
@@ -94,14 +94,16 @@ $ ./run
 3. **ring_ground_filter**  
     Remove ground points not to be detected as objects. This filter is best choice compered to other filters. Out put data is broadcast to `/points_no_ground`.
 
-    <image src=picture/ring_ground_filter.png width=50%>  
+    <image src="picture/ring_ground_filter.png" width=50%>  
 
 ### Computing
 
 <image src="picture/computing.png" width=50%>  
+
 1. **ndt_matching**
 
     <image src="picture/ndt.png" width=70%>  
+
     + **Error Thres**  
 
     + **Resolution**  
@@ -122,7 +124,7 @@ $ ./run
 
 3. **lidar_euclidean_cluster_detect**  
 
-    <image src="picture/lidar_euclidean_cluster.png" width=50%>
+    <image src="picture/lider_euclidean_cluster.png" width=50%>
 
     + **input_point_node**  
         If you use ground_filter, change input node from `/points_raw` to `/points_no_ground`
@@ -143,7 +145,8 @@ $ ./run
 
 5. **dp_planner**  
 
-    <image src="picture/dp_planner.png" width=50%>  
+    <image src="picture/dp_planner.png" width=50%>
+
     <image src="picture/dp_passes.png" width=50%>
 
     + **Follow Distance [m]**  
@@ -164,6 +167,7 @@ $ ./run
         Keep longitudinal distance from tf origin to obstacles.
 
 6. **pure_pursuit**
+
     <image src="picture/pure_pursuit.png" width=50%>
 
     + **Waypoint**  
