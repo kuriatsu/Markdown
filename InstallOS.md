@@ -324,14 +324,14 @@ http://cyaninfinite.com/tutorials/installing-opencv-in-ubuntu-for-python-3/
     ```bash
     mkdir /path/to/fonts/
     git clone https://github.com/iamdh4/ttf-wps-fonts.git
-    fc-cache ttf-wps-fonts
+    sudo fc-cache -vfs ttf-wps-fonts
     ```
 
 ## Atom setup for latex
 
 1. latex ビルドパッケージインストール
     ```bash
-    sudo apt install latexmk
+    sudo apt install latexmk　texlive-latex-extra texlive-lang-japanese
     ```
 1. atom　のパッケージインストールにて以下をインストール
 
@@ -347,3 +347,25 @@ http://cyaninfinite.com/tutorials/installing-opencv-in-ubuntu-for-python-3/
 
     3. latexer
     4. pdf-view
+
+
+## Google drive
+
+google-drive-ocamlfuse を使う。
+
+```bash
+# install
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt-get update
+sudo apt-get install google-drive-ocamlfuse
+
+# create mount point
+mkdir /home/user/mount/point
+google-drive-ocamlfuse /home/user/mount/point
+
+# use multiple account
+google-drive-ocamlfuse -label [user2] /home/user/mount/point
+
+# unmount
+fusermount -u /home/user/mount/point
+```
