@@ -2,11 +2,7 @@ Literacy
 ===
 ---
 
-# system
-
-## update error
-
-### Missing Key
+## Missing Key
 
 1. When updated
 
@@ -22,9 +18,8 @@ Literacy
 
 1. update again.        
 
-### GNU version change
 
-#### gccのversionを、g++やその他と付随させて変更
+## gccのversionを、g++やその他と付随させて変更
 
 ```bash
 #confirm version
@@ -53,7 +48,7 @@ Press <enter> to keep the current choice[*], or type selection number:
 
 ```
 
-#### コンパイラをgccからclaugに変更
+## コンパイラをgccからclaugに変更
 
 ```bash
 export CXX=
@@ -69,68 +64,13 @@ set(CMAKE_C_COMPILER "clang")
 
 を追加
 
-## file
+## sudo
 
-### compress / extract
-
-#### options meaning
-
-|option|description
-|:-:   |:--        
-|c     | create    
-|v     | verbose (display status)
-|f     |filename (designate file name)
-|x     | extract
-|z     | gz
-|j     | bz2
-|J     | xz
-
-#### tar.gz
-
+always work as superuser
 ```bash
-#compress
-tar -zcvf <name>.tar.gz (directory)
-#extract
-tar -zxvf <name>.tar.gz
-```
-
-#### tar
-
-```bash
-#compress
-tar -cvf <name>.tar (directory)
-#extract
-tar -xvf <name>.tar
-```
-#### zip
-
-```bash
-#compress
-zip -r <name>.zip (directory)
-#extract
-unzip <name>.zip #ordinary
-unar <name>.zip #compatible with files with Japanese created in Mac
-
-```
-
-## SHELL
-
-### sudo
-
-```bash
-# always work as superuser
 sudo -s
 sudo -i
 ```
-
-## trouble shooting
-### bash crash after `source devel/setup.bash`
-1. `etc/environment`
-2. sprit line at
-        PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:..." JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre/bin/java"
-    to
-        PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-        JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre/bin/java"
 
 ## Setting Fonts
 1. Get font file
@@ -192,7 +132,7 @@ x11vnc -forever -usepw -httpdir /usr/share/vnc-java/ #(optional -httpport 5901 -
 PNG images do not contain Bounding Box Information, so they are not be able to shown correctly in some tex documents.
 The one method is generate Bounding Box Information file(.bb).
 
-    ebb picture.png
+    extractbb picture.png
 
 Add edit package include line at Tex configuration part
 
@@ -211,9 +151,8 @@ nmap -sP 192.168.1.*
 ```  
 
 
-## multi display
+## multi display - setup sub touch display
 
-### setup sub touch display
 Ubuntu may not support multi touch display. ONLY the specified device according to below process can be correctly used
 ```bash
 # find which interface are used with each display. "eDP" means the built-in display

@@ -1,7 +1,7 @@
 ROS
 ---
 
-### catkin_make
+## catkin_make
 
 ```bash
 ###force build, ignore errors
@@ -13,7 +13,8 @@ catkin_make -DCATKIN_BLACKLIST_PACKAGES="package1;package2..."
 catkin_make -DCATKIN_BLACKLIST_PACKAGES=""
 
 ```
-### create original msg
+
+## create original msg
 1. create msg directory under the package
 1. create folder .msg
 1. In package.xml, uncomment below
@@ -50,11 +51,9 @@ catkin_make -DCATKIN_BLACKLIST_PACKAGES=""
     )    
 ```
 
-### log clear
-```bash
-rosclean check
-rosclean purge
-```
+## read options from roalaunch file
+
+## create dynamic reconfigure
 
 
 # Connect PCs with Ethernet cable
