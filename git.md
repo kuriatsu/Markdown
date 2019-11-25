@@ -35,3 +35,27 @@ git merge [merged branch]
 # ERROR "fatal: refusing to merge unrelated histories"
 git merge [merged branch] --allow-unrelated-histories
 ```
+
+## tag
+
+```bash
+# add tag to previous commit
+git tag [tag name]
+# reflect tag to remote
+git push origin [tag name]
+git push origin --tags # all tags
+
+# remove tag from local repository
+git tag -d [tag name]
+# remove tag from remote repository
+git push origin :[tag name]
+```
+
+## cannot see folder at remote page
+reason1 Tha file contains .git folder, so we can't stage these folder
+    git says the file is submodule ....
+```bash
+rm /path/to/.git
+git rm -rf --cache /path/to/dir
+git add /path/to/dir
+```
