@@ -173,3 +173,8 @@ xinput map-to-output <id> <port_name>
 
 * bin location
     /snap/bin/...
+
+## display id check
+```bash
+xrandr --listmonitors
+```
