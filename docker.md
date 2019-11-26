@@ -89,7 +89,7 @@ docker import [fine name].tar [image name]:[tag]
     ```bash
     echo "[use name] (ALL)=ALL ALL" >> /etc/sudoers.d/[user name]
     groupadd -g [groupid] [user name]
-    useradd -G /home/[user name] -g [groupid] -u [userid] [user name]
+    useradd -d /home/[user name] -m -s /bin/bash -g [groupid] -u [userid] [user name]
     passwd [user name]
     # input password
     ```
