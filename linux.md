@@ -178,3 +178,21 @@ xinput map-to-output <id> <port_name>
 ```bash
 xrandr --listmonitors
 ```
+
+## Thinkpad
+
+### freeze double finger scrolling after suspend in kernel 5.0.0
+`/etc/default/grub`
+before
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+```
+after
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash psmouse.synaptics_intertouch=0"
+```
+then
+```bash
+sudo update-grub
+reboot
+```
