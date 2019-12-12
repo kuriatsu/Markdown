@@ -59,3 +59,25 @@ rm /path/to/.git
 git rm -rf --cache /path/to/dir
 git add /path/to/dir
 ```
+
+## downloat specific Folder
+
+1. init
+```bash
+mkdir <repo>
+cd <repo>
+git init
+git remote add -f origin <url>
+```
+
+1. Make git enable to download specific folder
+```bash
+git config core.sparseCheckout true
+```
+
+1. register folder what you want to `.git/info/sparse-checkout`
+
+1. pull
+```bash
+git pull origin master
+```
