@@ -2,7 +2,7 @@ hp ZBook studio g4 ubuntu16.04.5インストール (Windows とデュアルブ�
 ===
 
 
-## Ubuntu16.04.5 Live media 作成　(できればUSB3.0が欲しい 2GBくらい) [windows]
+## Ubuntu18.04.5 Live media 作成　(できればUSB3.0が欲しい 2GBくらい) [windows]
 
 1. BitTorrent.exe インストール https://www.bittorrent.com/lang/ja/　
 
@@ -64,26 +64,22 @@ hp ZBook studio g4 ubuntu16.04.5インストール (Windows とデュアルブ�
 
     1. 英語版にしておくとCUIコンソールで文字化けしない
 
-    1. (ディスクの準備)Windowsとは別のものとしてインストールし，起動時に選べるようにしておく
-
-    1. (ディスクの準備)もしくは手動でパーティションを設定(Alex先生こだわりポイント)
+    1. partisionの手動管理
+        windows デュアルブートの場合は,nftsシステムパーティションがあるため,nfsシステムパーティションの設定をしなくていい
+        Ubuntuのみの場合は、nfsシステムパーティションを戦闘に追加（128MBor256MB）
+        /パーティションは50GB
+        /homeパーティションは幾らでもOK
 
     1. その他の設定は自由 (最小構成でダウンロードOK, ドライバ関連はインストールしたほうがいい)
 
 
-## hp ZBook  CUDA9.0インストール [ubuntu]
+## hp ZBook  CUDAインストール [ubuntu]
 
 ### モノの入手
 
-1. Cuda9.0
+1. Cuda
 
-    (Linux-x86_64 -> Ubuntu16.04 -> debian )  
-    Patch
-    updateのdebファイル  
-    cuDNN7.2 (メンバ登録必要)
-    cuDNN v7.2* Runtime Library for Ubuntu xx.04 (Deb)
-    cuDNN v7.2* Developer Library for Ubuntu xx.04 (Deb)
-    cuDNN v7.2* Code Samples and User Guide for Ubuntu xx.04 (Deb)
+    打つのしんどいからbashで保存→CUIログイン時に実行
 
 1. Nouveau ドライバの停止　($ lsmod  でnouveauが出てきたら)
 
@@ -100,12 +96,8 @@ hp ZBook studio g4 ubuntu16.04.5インストール (Windows とデュアルブ�
     1. nouveau関連のファイルを削除　($ dpkg -l | grep nouveau　で出てきたやつ)
     	yaranakute iikamo
 
-    1. $ sudo apt purge xserver-xorg-video-nouveau
+            sudo apt purge xserver-xorg-video-nouveau
 
-    1. Root権限でファイルマネージャを開く
-        ```bash
-        $ sudo nautilus
-        ```
     1. Initlamfsを再構築して再起動
 
         ```bash
@@ -116,59 +108,30 @@ hp ZBook studio g4 ubuntu16.04.5インストール (Windows とデュアルブ�
     1. `$ lsmod` でnouveau が出てこないことを確認
 
 
-## Nvidia driver アップデート
-CUDA install時にもインストールできるが少しバージョンが古い
+## Cuda インストール & Nvidia driver アップデート
 
-くれぐれもCUDA install後に行わないこと💀
-
-1. Ctrl+Alt+F1 → Alt+F6でアカウント名とパスワード入力しCUIでログイン
 
 1. display managerを停止(Ubuntu18: gdm, Ubuntu16, centOS...: lightdm)
     ```bash
-    $ sudo service lightdm stop
+    $ sudo service gdm stop
     ```
 
+1. Ctrl+Alt+F1 → Alt+F6でアカウント名とパスワード入力しCUIでログイン
+
+1. install CUDA
+
+    bash /path/to/install_cuda.sh
+
+1. Cudnn実行
 
     ```bash
-    $ sudo apt purge *nvidia*
-
-    $ sudo add-apt-repository ppa:graphics-drivers/ppa
-
     $ sudo apt update
-
-    $ sudo apt-get install nvidia-(ご自由に)
-
-    $ sudo reboot
-    ```
-
-
-## CUDA9.0インストール
-
-1. CUIでログイン
-    ```bash
-    $ sudo service lightdm stop
-    ```
-
-1. Ctrl+Alt+F1でアカウント名とパスワード入力
-
-1. インストールした xxx.deb までディレクトリを移動
-
-1. .deb実行
-
-    ```bash
-    # CUDA9インストール
-    $ sudo dpkg -i cuda*入れたやつ全部*.deb
-    $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-    $ sudo apt update
-    $ sudo apt -y install cuda-toolkit-9-0
 
     # cuDNN　インストール
     $ sudo dpkg -i libcudnn7*入れたやつ全部*.deb
-    $ sudo apt update
 
     # CUDA Profile tools　インストール
-    $ sudo apt install cuda-command-line-tools-9-0
-
+    $ sudo apt install cuda-command-line-tools
     ```
 
 1. 環境変数の追加
@@ -176,9 +139,6 @@ CUDA install時にもインストールできるが少しバージョンが古�
     /home/user/.bashrc 最下行に以下を追加
     ```
     $ export PATH=${PATH}:/usr/local/cuda-9.0/bin
-    $ export CUDA_HOME=${CUDA_HOME}:/usr/local/cuda:/usr/local/cuda-9.0
-    $ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-9.0/lib64
-    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
     ```
 1. reboot
 
@@ -366,3 +326,16 @@ google-drive-ocamlfuse -label [user2] /home/user/mount/point
 # unmount
 fusermount -u /home/user/mount/point
 ```
+
+# setting ibus-mozc
+
+```
+sudo apt install ibus-mozc
+```
+1. reboot
+1. set imput method to ibus
+1. custom key binding
+    composition - activate IME -> ctrl space
+    precomposition - deactivate IME -> ctrl space
+    composition - deactivate IME -> ctrl space
+    compatible - deactivate IME -> ctrl space
