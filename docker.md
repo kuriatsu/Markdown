@@ -87,7 +87,7 @@ docker import [fine name].tar [image name]:[tag]
 1. In container
     userid and groupid are ordinaly 1000. check all ids by `cat /etc/shadow`
     ```bash
-    echo "[use name] (ALL)=ALL ALL" >> /etc/sudoers.d/[user name]
+    echo "[use name] ALL=(ALL) ALL" >> /etc/sudoers.d/[user name]
     groupadd -g [groupid] [user name]
     useradd -d /home/[user name] -m -s /bin/bash -g [groupid] -u [userid] [user name]
     passwd [user name]
