@@ -81,3 +81,45 @@ dockerを起動し、起動中のコンテナをexportしてから再びimport�
 docker export [container name] > [file name].tar
 docker import [fine name].tar [image name]:[tag]
 ```
+
+## Change Docker user from root to arbitrary one
+
+1. In container
+    userid and groupid are ordinaly 1000. check all ids by `cat /etc/shadow`
+    ```bash
+    echo "[use name] ALL=(ALL) ALL" >> /etc/sudoers.d/[user name]
+    groupadd -g [groupid] [user name]
+    useradd -d /home/[user name] -m -s /bin/bash -g [groupid] -u [userid] [user name]
+    passwd [user name]
+    # input password
+    ```
+1. When run or begin
+
+    add option `-u [user name]` or `-u [groupid:userid]`
+
+## Docker with GUI
+
+1. allow docker user to access host devise
+
+    ```bash
+    xhost local:[hostname of docker]
+    ```
+
+1. Add option when you start to run container
+
+    ```bash
+    --hostname [hostname of docker]
+    -e DISPLAY=$DISPLAY \
+    -v /run/udev/:/run/udev/ \
+    -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
+    ```
+
+## subl in docker
+
+### trouble of terminal view
+install from github, not install package
+```bash
+git clone https://github.com/Wramberg/TerminalView.git $HOME/.config/sublime-text-3/Packages/TerminalView
+```
+
+## docker networking
