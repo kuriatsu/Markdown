@@ -126,20 +126,18 @@ x11vnc -forever -usepw -httpdir /usr/share/vnc-java/ #(optional -httpport 5901 -
     3. set `Remote Desctop Preference`
     <image src="Picture/remmina.png">
 
+* **tight VNC**
 
-## LaTeX
-### set picture with .png not .eps
-PNG images do not contain Bounding Box Information, so they are not be able to shown correctly in some tex documents.
-The one method is generate Bounding Box Information file(.bb).
+    server
+    ```bash
+    # install
+    sudo apt install tightvncserver
+    # run
+    tightvnc
+    ```
 
-    extractbb picture.png
-
-Add edit package include line at Tex configuration part
-
-    \usepackage[]{graphicx} -> \usepackage[dvipdfm]{graphicx}
-
-
-Then you can use .png files normally.
+    cliant (smartphone)
+    1. install VNC viewer
 
 ## network
 
@@ -196,8 +194,42 @@ then
 sudo update-grub
 reboot
 ```
+
 ## error of apt
 * `Temporary failure resolving 'archive.ubuntu.com`
 ```bash
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+```
+
+## image processing
+
+### compless image
+```bash
+# install
+sudo apt install pngquant
+# compless (overwrite)
+pngquant -f --ext .png --quality=60 ./*.png
+```
+
+### resize image
+```bash
+convert -geometry "40%" from.png to.png
+```
+
+### create gif
+```bash
+convert -delay 10 -loop 0 *.png out.gif
+```
+
+## system
+### check running UEFI mode or not
+check file
+```bash
+ls /sys/dirmware/efi
+```
+
+## merge PDF
+
+```bash
+$ pdfunite 1.pdf 2.pdf ... output.pdf
 ```
