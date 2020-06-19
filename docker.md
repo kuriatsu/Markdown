@@ -110,7 +110,7 @@ docker import [fine name].tar [image name]:[tag]
     ```bash
     --hostname [hostname of docker]
     -e DISPLAY=$DISPLAY \
-    -v /run/udev/:/run/udev/ \
+    # -v /run/udev/:/run/udev/ \
     -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
     ```
 
