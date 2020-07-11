@@ -233,3 +233,9 @@ ls /sys/dirmware/efi
 ```bash
 $ pdfunite 1.pdf 2.pdf ... output.pdf
 ```
+
+## atom hydrogen
+1. install hydrogen into atom
+1. `pip3 install ipython ipykernel jupyter`
+1. reboot atom
+1. `python3 -m ipykernel install --user`
