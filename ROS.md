@@ -141,3 +141,11 @@ ROSBAGの再生やトピックの確認ができる(Autowareの元的なやつ)
     1. vel_pose_connect <- simulation mode
     1. pure_pursuit
     1. twist_filter
+
+
+# image compress -> raw
+```bash
+
+$ sudo apt install ros-melodic-image-transport-plugins
+$ rosrun image_transport republish compressed in:=/camera_out/image_raw raw out:=/image_raw
+```
