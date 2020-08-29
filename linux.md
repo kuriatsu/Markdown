@@ -239,3 +239,55 @@ $ pdfunite 1.pdf 2.pdf ... output.pdf
 1. `pip3 install ipython ipykernel jupyter`
 1. reboot atom
 1. `python3 -m ipykernel install --user`
+
+## サーバー構築方法
+モバイルルーターはグローバルIPが取得できるものと出来ないものがある
+Speedwifi next w0xシリーズは取得できるが、固定ではない→DDNS使用で解決
+
+1. グローバルIP取得
+1. PCのローカルIPを固定
+    1. `/etc/dhcpcd.conf`に以下を追加
+    ```bash
+    interface wlan0
+    static ip_address=192.168.xx.xx/24 # 自分のローカルIP
+    static routers=192.168.xx.x # ルーターのlan側のIP(gateway)
+    static domain_name_servers=192.168.xx.x # routersと同じ
+    ```
+1. portforwarding設定
+    1. ルーターの設定サイトにアクセス
+    1. portforwarding設定タブを開く
+    1. ポートとIPを設定 (ルーターのグローバルIP/ポートが対応するローカルIP/ポートに対応付けられる)
+    1. とりあえずどちらも80番ポートを開放
+1. PCにサーバーを入れておく(apache2)
+    ```bash
+    $ sudo apt install apache2
+    ```
+1. グローバルIPが固定でない場合は、DDNSを設定
+    1. No-ipでアカウント取得
+    1. 環境下にnoip-ducをインストール
+    ```bash
+    $ wget http://www.noip.com/client/linux/noip-duc-linux.tar.gz
+    $ tar zxvf noip-duc-linux.tar.gz
+    $ cd noip-2.1.9-1/
+    $ make
+    $ sudo make install
+    ```
+    1. 自動起動設定
+        1. `/usr/local/systemd/system/noip.service`に以下を記入
+        ```
+        [Unit]
+        Description=no-ip server
+        After=syslog.target
+
+        [Service]
+        Type=simple
+        ExecStart=/home/pi/Downloads/noip-2.1.9-1/debian.noip2.sh start
+
+        [Install]
+        WantedBy=multi-user.target
+        ```
+        1. sudo chmod 755 debian.noip2.sh
+        1. sudo systemctl daemon-reload
+        1. sudo systemctl start noip
+        1. sudo systemctl status noip
+        1. sudo systemctl enable noip
