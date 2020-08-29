@@ -115,7 +115,12 @@ docker import [fine name].tar [image name]:[tag]
     ```
 
 ## subl in docker
-
+```bash
+$ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+$ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+$ sudo apt-get update
+$ sudo apt-get install sublime-text
+```
 ### trouble of terminal view
 install from github, not install package
 ```bash
@@ -123,3 +128,15 @@ git clone https://github.com/Wramberg/TerminalView.git $HOME/.config/sublime-tex
 ```
 
 ## docker networking
+
+
+## docker cannot show image to X
+
+If you get following error...
+
+    X Error: BadAccess (attempt to access private resource denied) 10
+
+do
+```bash
+$ export QT_X11_NO_MITSHM=1
+```
