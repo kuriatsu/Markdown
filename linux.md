@@ -291,3 +291,8 @@ Speedwifi next w0xシリーズは取得できるが、固定ではない→DDNS�
         1. sudo systemctl start noip
         1. sudo systemctl status noip
         1. sudo systemctl enable noip
+        
+## pyperclip
+```bash
+sudo apt install xclip
+```
