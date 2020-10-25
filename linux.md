@@ -291,3 +291,32 @@ Speedwifi next w0xシリーズは取得できるが、固定ではない→DDNS�
         1. sudo systemctl start noip
         1. sudo systemctl status noip
         1. sudo systemctl enable noip
+
+### QT
+## No module named webview webkitwidget
+```bash
+sudo apt install libqt5webkit5-dev
+```
+```Cpp
+QT += webkitwidget libqt5webkit5-dev
+```
+
+for cmake
+```bash
+sudo apt install qtwebengine5-dev (libqt5webenginewidgets5)
+```
+#### No module named multimedia
+```bash
+sudo apt install qtmultimedia5-dev
+
+```
+### raspberry pi x radio tuner
+
+```bash
+sudo apt install libusb-1-dev cmake build-essential rtl-sdr
+rtl_fm -f 77800000 -s 200000 -r 48000 - | aplay -r 48000 -f S16_LE
+```
+sudo じゃないとできなかった
+-> usb の権限の問題なので、
+1. `/etc/udev/rules.d`　以下に[ファイル](https://github.com/osmocom/rtl-sdr/blob/master/rtl-sdr.rules)を追加
+1. reboot
