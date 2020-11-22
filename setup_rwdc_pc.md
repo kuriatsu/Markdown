@@ -26,8 +26,10 @@ sudo systemctl enable auditd
 ## useradd
 ```bash
 sudo groupadd student
-sudo adduser rwdc-dthon student
+sudo adduser rwdc-dthon
+sudo adduser rwdc-dthon　student
 ```
+name = rwdc**lastname**
 
 ## polkit
 create bellow file
@@ -133,9 +135,55 @@ else
 fi
 
 echo "close crypt root"
-sudo cryptsetup close crypt_root
+cryptsetup close crypt_root
 
 sleep 5
 ```
 
+## enable run the mount program
+/etc/sudoers
+```bash
+%student ALL=(root) NOPASSWD:/usr/local/mount-benesse,/usr/local/umount-benesse
+```
+
 ## create desktop application
+
+
+## setup vpn server
+[ここを参考に](https://qiita.com/noraworld/items/2fe6be489e1d93c748b8)
+[ここも](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-18-04)
+* `systemctl start openvpn`だと起動するけど、　`systemctl status openvpn`が`exit`にはなったので,
+`sudo openvpn server.conf`で起動  -> openvpn@serverが立ち上がり、`running`になった。
+* フォワーディングとマスカレードの設定はしっかりやること。
+* VPNサーバー側のローカルIPは`192.168.15.0/24`で、VPNは`10.8.0.0/24`
+* VPN側のローカルPCにアクセスする場合は、ローカルPCのIPのゲートウェイをVPNサーバーのVPN側のIPに設定(10.8.0.1)
+
+[ufwについて](https://linuxsalad.blogspot.com/2009/02/ufw.html)
+[IPマスカレード](http://safe-linux.homeip.net/network/Gateway_Server-09.html)
+
+## vpn client on linux
+
+1. 上で作成したvpn.ovpnを、gnome-networkmanager(設定のやつ)で読み込む
+1. `Network`タブのVPNで設定
+1. `sudo apt install network-manager-openvpn-gnome`が必要
+
+## vnc server
+[ここ参考](https://qiita.com/_dakc_/items/81ca237dfc4cfec855d9)
+以降のPCへのログインを　gnome-sessionで行うとカーソル等が動かなく成るのでxwaylandでログインするか、cuiログインすること。もしくは、vncサーバーを停止してからログイン
+
+1. install vnc server
+```bash
+sudo apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-common
+```
+1. config vnc server
+```bash
+vncpasswd
+# readonly pass はnoでいい
+```
+2. start vnc server
+systemctl で制御しようと思ったが、上手く行かなかったので、各ユーザでログインしてサーバー起動
+ディスプレイIDは変えること
+
+```bash
+vncserver :1 -localhost no
+```
