@@ -1,4 +1,9 @@
-
+## tool類
+apt : jupyter-notebook pip3
+python-pip pandas sklearn
+jupyter-notebook
+chainer tensorflow-gpu pandas-ml
+numpy scipy matplotlib statsmodels nltk seaborn ggplot datetime
 
 ## HDD  暗号化
 ```bash
@@ -55,6 +60,11 @@ ResultActive=no
 #### prevent mount external devices  
 /var/lib/polkit-1/localauthority/50-local.d/10-automount.pkla
 
+ファイル名の番号は全て変えること
+同じだとどれか1つしか実行されない
+変な空白も注意
+`cat -A filename`でチェック
+
 ```java
 [Prevent automount]
 Identity=unix-group:student
@@ -85,6 +95,9 @@ ResultAny=no
 ResultInactive=no
 ResultActive=no
 ```
+最後は
+`sudo systemctl restart polkit.service`
+
 
 ## create mount/unmount script
 /usr/local/src/mount-benesse
