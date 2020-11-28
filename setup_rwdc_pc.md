@@ -5,6 +5,9 @@ jupyter-notebook
 chainer tensorflow-gpu pandas-ml
 numpy scipy matplotlib statsmodels nltk seaborn ggplot datetime
 
+## GPU 環境
+CUDA CuDNN
+
 ## HDD  暗号化
 ```bash
 sudo apt install cryptsetup
@@ -200,3 +203,7 @@ systemctl で制御しようと思ったが、上手く行かなかったので�
 ```bash
 vncserver :1 -localhost no
 ```
+
+## 再起動時チェッｋ
+HDDがマウントされているか
+vncserverが稼働しているか
