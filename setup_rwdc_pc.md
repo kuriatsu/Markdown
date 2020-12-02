@@ -196,13 +196,26 @@ sudo apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-com
 vncpasswd
 # readonly pass はnoでいい
 ```
-2. start vnc server
+1. make .vnc/xstartup
+    vncconfig は消しておく
+
+1. client↔serverでクリップボードのコピーを不可能にする。
+vncconfigの権限を剥奪
+```bash
+sudo chmod 700 /usr/bin/vncconfig
+```
+
+1. start vnc server
 systemctl で制御しようと思ったが、上手く行かなかったので、各ユーザでログインしてサーバー起動
 ディスプレイIDは変えること
 
 ```bash
 vncserver :1 -localhost no
 ```
+
+## 周知
+3人以上が同時に生データを開かないこと
+
 
 ## 再起動時チェッｋ
 HDDがマウントされているか
