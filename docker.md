@@ -140,3 +140,8 @@ do
 ```bash
 $ export QT_X11_NO_MITSHM=1
 ```
+
+## tab completion
+```bash
+sudo apt install bash-completion
+```
