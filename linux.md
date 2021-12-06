@@ -146,6 +146,7 @@ x11vnc -forever -usepw -httpdir /usr/share/vnc-java/ #(optional -httpport 5901 -
 ```bash
 # output search list
 nmap -sP 192.168.1.*
+echo 192.168.0.{1..254} | xargs -P256 -n1 ping -s1 -c1 -W1 | grep ttl
 ```  
 
 
